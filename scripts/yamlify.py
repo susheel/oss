@@ -39,6 +39,8 @@ def extract_sections(issue_data):
 def format_yaml(sections):
     category = CATGEORIES[sections['main-category'][0]]
     filename = "/".join([category, sections['name'][0]]) + ".yaml"
+    categories = sections['categories'][0]
+    categories = categories.split(',')
     data = {
         'name': sections['name'][0],
         'url': sections['url'][0],
