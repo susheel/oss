@@ -55,10 +55,8 @@ def main(args):
         if os.path.isfile(a):
             issue_data = read_lines_from_file(a)
             sections = extract_sections(issue_data)
-            print(sections)
             filename, data = format_yaml(sections)
-            # write_yaml(data, os.path.join(OSS_PROJECTS_DIR, filename))
-            print(filename, sections)
+            write_yaml(data, os.path.join(OSS_PROJECTS_DIR, filename))
 
 if __name__ == '__main__':
     main(sys.argv[1:])
