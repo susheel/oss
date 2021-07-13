@@ -21,8 +21,17 @@ jobs:
           cat << EOF >> ${RUNNER_TEMP}/oss-${ISSUE_NUMBER}.md
           ${POST_BODY}
           EOF
+          echo "Contents of ${RUNNER_TEMP}/oss-${ISSUE_NUMBER}.md"
+          cat ${RUNNER_TEMP}/oss-${ISSUE_NUMBER}.md
+      
+      - name: Convert OSS data to YAML
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
           python scripts/yamlify.py ${RUNNER_TEMP}/oss-${ISSUE_NUMBER}.md
-
+      
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
