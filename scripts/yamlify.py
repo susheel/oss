@@ -40,7 +40,8 @@ def format_yaml(sections):
     category = CATGEORIES[sections['main-category'][0]]
     filename = "/".join([category, sections['name'][0]]) + ".yaml"
     categories = sections['categories'][0]
-    categories = categories.split(',')
+    categories = sections['main-category'] + categories.split(',')
+    categories = list(set(categories))
     data = {
         'name': sections['name'][0],
         'url': sections['url'][0],
